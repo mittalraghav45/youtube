@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import {
   HAMBUR_LOGO,
@@ -7,6 +7,7 @@ import {
   YOUTUBE_SEARCH_API,
 } from "../utils/constants";
 import { useEffect, useState } from "react";
+import { cacheResults } from "../utils/searchSlice";
 
 const Head = () => {
   const dispatch = useDispatch();
@@ -14,23 +15,39 @@ const Head = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
+  const searchCache = useSelector((store) => store.search);
+
   useEffect(() => {
-    const timer = setTimeout(() => {
-      getSearchSuggestions(searchQuery);
-    }, 200); // 200 ms debounce
+    const timer = setTimeout(
+      () => {
+        if (searchCache[searchQuery]) {
+          setSuggestions(searchCache[searchQuery]);
+        } else {
+          getSearchSuggestions(searchQuery);
+        }
+      },
+
+      200
+    ); // 200 ms debounce
+
     return () => {
       clearTimeout(timer);
     };
-  }, [searchQuery]);
+  }, [searchQuery, searchCache]);
 
   const getSearchSuggestions = async () => {
-    console.log(YOUTUBE_SEARCH_API + searchQuery);
+    
+    console.log("API CALL :", searchQuery);
 
-    console.log("API CALL :" + searchQuery);
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const json = await data.json();
-    // console.log(json);
     setSuggestions(json[1]);
+    
+    dispatch(
+      cacheResults({
+        [searchQuery]: json[1],
+      })
+    );
   };
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
