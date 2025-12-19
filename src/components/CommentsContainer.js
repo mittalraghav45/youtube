@@ -27,7 +27,7 @@ const commentsData = [
   },
 
   // extra dummy comments
-  { name: "Lakshat", text: "Lorem ipsum from Lakshat", replies: [] },
+  { name: "Lakshay", text: "Lorem ipsum from Lakshay", replies: [] },
   {
     name: "Vipin",
     text: "Lorem ipsum from Vipin",
