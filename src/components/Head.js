@@ -55,8 +55,8 @@ const Head = () => {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            onFocus={()=>setShowSuggestions(true)}
-            onBlur={()=>setShowSuggestions(false)}
+            onFocus={() => setShowSuggestions(true)}
+            onBlur={() => setShowSuggestions(false)}
             className="border border-gray-400 px-4 py-2 rounded-l-full w-1/2"
             placeholder="Search"
           />
@@ -64,19 +64,17 @@ const Head = () => {
             🔍
           </button>
         </div>
-       { showSuggestions && <div className="bg-white shadow  w-[14rem] px-5 fixed py-2">
-          <ul>
-            {suggestions.map((s) => (
-              <li
-                key={s}
-                className="py-2 shadow-sm hover:bg-gray-100"
-              >
-                 
-                🔍 {s}
-              </li>
-            ))}
-          </ul>
-        </div>}
+        {showSuggestions && (
+          <div className="bg-white shadow  w-[14rem] px-5 absolute py-2">
+            <ul>
+              {suggestions.map((s) => (
+                <li key={s} className="py-2 shadow-sm hover:bg-gray-100">
+                  🔍 {s}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
 
       <div className="col-span-1">
