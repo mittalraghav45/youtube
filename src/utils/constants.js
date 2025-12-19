@@ -12,4 +12,4 @@ export const YOUTUBE_SEARCH_API='https://suggestqueries.google.com/complete/sear
 
   export const YT_LOGO='https://st.perplexity.ai/estatic/0b226c450798410ac541646c86ec31afd840e5beab817a5d84fa821e7db61981ec84c3b4a3f072a7a2e1899c9fb06c6e999e8e52bab5e320bf4aa03f5a450f63934fd9d392165b94fbbc9a0447cc078be2c229a184b27b792ad7cc0f93b9a30a'
 
-  export const USER_ICON='https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/194ba991-931e-54e1-88ba-c0485720c96e/e0768043-f16d-5667-a3cd-c51a212d68ac.jpg'
+  export const USER_ICON='https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png'
