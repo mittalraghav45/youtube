@@ -1,6 +1,6 @@
 //credentials page:https://console.cloud.google.com/apis/credentials?project=youtube-project-481512  
 
-
+export const OFFSET=10;
 const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 export const YOUTUBE_VIDEOS_API =
