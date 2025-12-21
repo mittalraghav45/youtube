@@ -1,10 +1,9 @@
-
-const Button = ({name}) => {
+const Button = ({ name }) => {
   return (
-    <div> 
-    <button className='px-5 m-5 rounded-lg py-2 bg-gray-200 '>{name}</button>
-    </div>
-  )
-}
+    <button className="px-3 md:px-4 py-1.5 bg-gray-100 hover:bg-gray-200 text-xs md:text-sm rounded-full mr-2 mb-2 whitespace-nowrap">
+      {name}
+    </button>
+  );
+};
 
-export default Button
+export default Button;
