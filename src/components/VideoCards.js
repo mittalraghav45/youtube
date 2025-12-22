@@ -5,7 +5,7 @@ const VideoCards = ({ info }) => {
   const { channelTitle, title, thumbnails } = snippet;
 
   return (
-    <div className="w-full mb-4 cursor-pointer">
+    <div className=" mb-4 cursor-pointer">
       <div className="w-full rounded-xl overflow-hidden bg-gray-200">
         <img
           className="w-full h-40 md:h-44 lg:h-48 object-cover"
