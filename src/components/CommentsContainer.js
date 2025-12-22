@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { COMMENTS_API,USER_ICON } from "../utils/constants";
+import { COMMENTS_API, USER_ICON } from "../utils/constants";
 
 const CommentsList = ({ videoId }) => {
   const [comments, setComments] = useState([]);
@@ -30,13 +30,10 @@ const CommentsList = ({ videoId }) => {
     }
   }, [videoId]);
 
-    return (
+  return (
     <div>
       {comments.map((c) => (
-        <div
-          key={c.id}
-          className="flex shadow-sm bg-gray-100 p-2 rounded my-2"
-        >
+        <div key={c.id} className="flex shadow-sm bg-gray-100 p-2 rounded my-2">
           <img
             className="w-10 h-10 rounded-full"
             alt="cmt-img"
@@ -51,7 +48,6 @@ const CommentsList = ({ videoId }) => {
     </div>
   );
 };
-
 
 const CommentsContainer = ({ videoId }) => {
   return (
