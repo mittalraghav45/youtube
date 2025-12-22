@@ -1,7 +1,11 @@
 //credentials page:https://console.cloud.google.com/apis/credentials?project=youtube-project-481512  
+//  https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&videoId=VIDEO_ID_HERE&maxResults=20&key=AIzaSyAE24zAYzCoLlKMXtV472yjfiwiK-e41nI
+
 
 export const OFFSET=10;
+
 const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+export const COMMENTS_API='https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&maxResults=10&key='+GOOGLE_API_KEY+'&videoId=';
 
 export const YOUTUBE_VIDEOS_API =
   "https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=GB&maxResults=50&key="+GOOGLE_API_KEY;

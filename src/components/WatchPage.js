@@ -7,6 +7,7 @@ import LiveChat from "./LiveChat";
 
 const WatchPage = () => {
   const [searchParams] = useSearchParams();
+  const videoId=searchParams.get("v");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const WatchPage = () => {
             allowFullScreen
           ></iframe>
         </div>
-        <CommentsContainer />
+        <CommentsContainer videoId={videoId}/>
       </div>
 
       <div className="w-full lg:w-2/5 p-2 md:p-4 lg:border-l border-gray-200">

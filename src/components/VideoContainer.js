@@ -14,18 +14,7 @@ const VideoContainer = () => {
     const json = await data.json();
     setVideos(json.items);
   };
-
-//   return (
-//     <div className="flex flex-wrap">
-//       {videos.map((video) => (
-//         <Link to={'/watch?v='+video.id}  >
-//           <VideoCards  key={video.id} 
-//           info={video} />
-//         </Link>
-//       ))}
-//     </div>
-//   );
-// }
+ 
 
   return (
   <div className="grid gap-4 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
