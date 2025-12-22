@@ -47,8 +47,9 @@ const Head = () => {
   };
 
   return (
+    
     <div className="grid grid-cols-12 items-center gap-3 p-3 md:p-5 shadow sticky top-0 bg-white z-20">
-      {/* Left: menu + logo */}
+      
       <div className="flex items-center col-span-2 md:col-span-2">
         <img
           className="h-6 md:h-8 cursor-pointer"
@@ -99,7 +100,7 @@ const Head = () => {
       <div className="col-span-2 md:col-span-1 flex justify-end">
         <img className="h-8 w-8 rounded-full" src={USER_ICON} alt="user-icon" />
       </div>
-    </div>
+    </div> 
   );
 };
 

@@ -16,7 +16,7 @@ const list = [
 
 const ButtonList = () => {
   return (
-    <div className="flex overflow-x-auto no-scrollbar py-2 px-2 md:px-4 bg-white sticky top-[3.5rem] z-10">
+    <div className="flex overflow-x-auto no-scrollbar py-2 px-2 md:px-4 bg-white top-[3.5rem] z-10">
       {list.map((name) => (
         <Button key={name} name={name} />
       ))}
