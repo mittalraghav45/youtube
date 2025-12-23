@@ -11,11 +11,13 @@ import { cacheResults } from "../utils/searchSlice";
 
 const Head = () => {
   const dispatch = useDispatch();
+  // const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [theme, setTheme] = useState("light"); // just in memory
   const searchCache = useSelector((store) => store.search);
+  
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -46,9 +48,7 @@ const Head = () => {
     dispatch(toggleMenu());
   };
 
-  const handleSearchResults = (e) => {
-    // console.log(e.target.value)
-  };
+ 
   // theme dark ? light
   useEffect(() => {
     const root = document.documentElement;
@@ -62,7 +62,12 @@ const Head = () => {
   const toggleTheme = () => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
-
+  
+const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (!searchQuery.trim()) return;
+    navigate(`/results?search_query=${encodeURIComponent(searchQuery.trim())}`);
+  }
   return (
     <div className="grid grid-cols-12 items-center gap-3 p-3 md:p-5 shadow sticky top-0 bg-white z-20">
       <div className="flex items-center col-span-2 md:col-span-2">
@@ -79,7 +84,8 @@ const Head = () => {
 
       {/* Center: search */}
       <div className="col-span-8 md:col-span-9 px-1 md:px-6 relative">
-        <div className="flex justify-center">
+        <form onSubmit={handleSearchSubmit} 
+        className="flex justify-center">
           <input
             type="text"
             value={searchQuery}
@@ -92,7 +98,7 @@ const Head = () => {
           <button className="border border-gray-300 px-4 md:px-5 py-1.5 md:py-2 rounded-r-full bg-gray-100 hover:bg-gray-200">
             🔍
           </button>
-        </div>
+        </form>
 
         {showSuggestions && (
           <div className="bg-white shadow-lg w-full md:w-3/4 lg:w-1/2 mx-auto mt-1 rounded-lg border border-gray-100 absolute left-1/2 -translate-x-1/2">
@@ -102,7 +108,7 @@ const Head = () => {
                   key={s}
                   className="px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer flex items-center gap-2"
                 >
-                  <span onClick={handleSearchResults}>🔍</span>
+                  <span>🔍</span>
                   <span>{s}</span>
                 </li>
               ))}

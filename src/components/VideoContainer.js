@@ -1,21 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { YOUTUBE_VIDEOS_API } from "../utils/constants";
+import { SEARCH_API, YOUTUBE_VIDEOS_API } from "../utils/constants";
 import VideoCards from "./VideoCards";
-import { Link } from "react-router-dom";
+import { Link,useSearchParams } from "react-router-dom";
 
 const VideoContainer = () => {
   const [videos, setVideos] = useState([]);
   const [nextPageToken, setNextPageToken] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get("search_query") || "";
 
   const getVideos = async (pageToken) => {
     if (loading) return;
     setLoading(true);
 
-    let url = YOUTUBE_VIDEOS_API;
-    if (pageToken) {
-      url += `&pageToken=${pageToken}`;
-    }
+    //search page /results
+    let url = "";
+    // if (query) {
+    //   url = SEARCH_API + encodeURIComponent(query);
+    //   if (pageToken) {
+    //     url += `&pageToken=${pageToken}`;
+    //   }
+    // } else {
+      url = YOUTUBE_VIDEOS_API;
+      if (pageToken) {
+        url += `&pageToken=${pageToken}`;
+      }
+    // }
     const data = await fetch(url);
     const json = await data.json();
     setVideos((prev) => [...prev, ...(json.items || [])]);
