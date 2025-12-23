@@ -4,7 +4,7 @@ import {
   HAMBUR_LOGO,
   USER_ICON,
   YT_LOGO,
-  YOUTUBE_SEARCH_API,
+  YOUTUBE_SUGGESTIONS_API,
 } from "../utils/constants";
 import { useEffect, useState } from "react";
 import { cacheResults } from "../utils/searchSlice";
@@ -33,7 +33,7 @@ const Head = () => {
   }, [searchQuery, searchCache]);
 
   const getSearchSuggestions = async () => {
-    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+    const data = await fetch(YOUTUBE_SUGGESTIONS_API + searchQuery);
     const json = await data.json();
     setSuggestions(json[1]);
     dispatch(
@@ -97,16 +97,15 @@ const Head = () => {
             Search
           </button>
         </form>
-
+{/* //suggestions dropdown shown here  */}
         {showSuggestions && (
           <div className="bg-white dark:bg-gray-800 shadow-lg w-full md:w-3/4 lg:w-1/2 mx-auto mt-1 rounded-lg border border-gray-100 dark:border-gray-700 absolute left-1/2 -translate-x-1/2">
             <ul className="py-2 max-h-64 overflow-y-auto">
               {suggestions.map((s) => (
-                <li
-                  key={s}
+                <li key={s}
                   className="px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer flex items-center gap-2"
                 >
-                  <span>Search</span>
+                  <span>🔍</span>
                   <span>{s}</span>
                 </li>
               ))}
