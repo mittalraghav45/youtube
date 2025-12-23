@@ -51,7 +51,7 @@ const VideoContainer = () => {
   };
 
   return (
-    <div className="h-screen overflow-y-scroll bg-gray-50 dark:bg-gray-900 dark:text-gray-100" onScroll={handleScroll}>
+    <div className="h-screen overflow-y-hidden bg-gray-50 dark:bg-gray-900 dark:text-gray-100" onScroll={handleScroll}>
       <div className="grid gap-4 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {videos.map((video) => (
           <Link key={video.id} to={"/watch?v=" + video.id}>
