@@ -6,7 +6,7 @@ import Sidebar from "./Sidebar";
    <div className="flex flex-col md:flex-row h-[calc(100vh-4rem)]">  
   
    <Sidebar />
-   <div className="flex-1 overflow-x-hidden overflow-y-auto bg-red-50">
+   <div className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 dark:bg-black-900 dark:text-white-100">
     <Outlet/>
    </div> 
    </div> );

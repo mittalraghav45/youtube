@@ -14,7 +14,7 @@ const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-
+  const [theme, setTheme] = useState("light"); // just in memory
   const searchCache = useSelector((store) => store.search);
 
   useEffect(() => {
@@ -46,10 +46,25 @@ const Head = () => {
     dispatch(toggleMenu());
   };
 
+  const handleSearchResults = (e) => {
+    // console.log(e.target.value)
+  };
+  // theme dark ? light
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === "dark") {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
+
   return (
-    
     <div className="grid grid-cols-12 items-center gap-3 p-3 md:p-5 shadow sticky top-0 bg-white z-20">
-      
       <div className="flex items-center col-span-2 md:col-span-2">
         <img
           className="h-6 md:h-8 cursor-pointer"
@@ -79,7 +94,7 @@ const Head = () => {
           </button>
         </div>
 
-        {showSuggestions  && (
+        {showSuggestions && (
           <div className="bg-white shadow-lg w-full md:w-3/4 lg:w-1/2 mx-auto mt-1 rounded-lg border border-gray-100 absolute left-1/2 -translate-x-1/2">
             <ul className="py-2 max-h-64 overflow-y-auto">
               {suggestions.map((s) => (
@@ -87,7 +102,7 @@ const Head = () => {
                   key={s}
                   className="px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer flex items-center gap-2"
                 >
-                  <span>🔍</span>
+                  <span onClick={handleSearchResults}>🔍</span>
                   <span>{s}</span>
                 </li>
               ))}
@@ -96,11 +111,24 @@ const Head = () => {
         )}
       </div>
 
-      {/* Right: user icon */}
-      <div className="col-span-2 md:col-span-1 flex justify-end">
+      
+      {/* Right: user icon + dark mode */}
+      <div className="col-span-2 md:col-span-1 flex justify-end items-center gap-3">
+        <button
+          type="button"
+          onClick={toggleTheme}
+          className={`flex items-center w-12 h-6 rounded-full p-1 transition-colors ${
+            theme === "dark" ? "bg-yellow-400" : "bg-gray-400"
+          }`}>
+          <span
+            className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${
+              theme === "dark" ? "translate-x-6" : "translate-x-0"
+            }`}
+          />
+        </button>
         <img className="h-8 w-8 rounded-full" src={USER_ICON} alt="user-icon" />
       </div>
-    </div> 
+    </div>
   );
 };
 

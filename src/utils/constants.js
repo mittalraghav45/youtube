@@ -6,6 +6,8 @@ export const OFFSET=10;
 
 const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 export const COMMENTS_API='https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&maxResults=10&key='+GOOGLE_API_KEY+'&videoId=';
+export const SEARCH_API='https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=25&key='+GOOGLE_API_KEY+'&q='
+// export const SEARCH_API='https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=25&key=AIzaSyAE24zAYzCoLlKMXtV472yjfiwiK&q=travel'
 
 export const YOUTUBE_VIDEOS_API =
   "https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=GB&maxResults=50&key="+GOOGLE_API_KEY;
