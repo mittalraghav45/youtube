@@ -15,7 +15,7 @@ const WatchPage = () => {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-col lg:flex-row w-full h-full">
+    <div className="flex flex-col lg:flex-row w-full h-full dark:bg-gray-900 dark:text-gray-100">
       <div className="flex-1 lg:w-3/5 p-2 md:p-4 space-y-4">
         <div className="w-full aspect-video rounded-xl overflow-hidden bg-black">
           <iframe
@@ -28,8 +28,8 @@ const WatchPage = () => {
         <CommentsContainer videoId={videoId}/>
       </div>
 
-      <div className="w-full lg:w-2/5 p-2 md:p-4 lg:border-l border-gray-200">
-        <h2 className="font-semibold mb-2 text-gray-800">Live Chat</h2>
+      <div className="w-full lg:w-2/5 p-2 md:p-4 lg:border-l border-gray-200 dark:border-gray-700">
+        <h2 className="font-semibold mb-2 text-gray-800 dark:text-gray-100">Live Chat</h2>
         <LiveChat />
       </div>
     </div>

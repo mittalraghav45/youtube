@@ -6,7 +6,7 @@ const VideoCards = ({ info }) => {
 
   return (
     <div className=" mb-4 cursor-pointer">
-      <div className="w-full rounded-xl overflow-hidden bg-gray-200">
+      <div className="w-full rounded-xl overflow-hidden bg-gray-200 dark:bg-gray-700">
         <img
           className="w-full h-40 md:h-44 lg:h-48 object-cover"
           alt="thumbnail"
@@ -14,11 +14,11 @@ const VideoCards = ({ info }) => {
         />
       </div>
       <div className="mt-2 px-1">
-        <h3 className="font-semibold text-sm md:text-base line-clamp-2 text-gray-900">
+        <h3 className="font-semibold text-sm md:text-base line-clamp-2 text-gray-900 dark:text-gray-100">
           {title}
         </h3>
-        <p className="text-xs md:text-sm text-gray-600 mt-1">{channelTitle}</p>
-        <p className="text-xs text-gray-500">{statistics?.viewCount} views</p>
+        <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300 mt-1">{channelTitle}</p>
+        <p className="text-xs text-gray-500 dark:text-gray-300">{statistics?.viewCount} views</p>
       </div>
     </div>
   );

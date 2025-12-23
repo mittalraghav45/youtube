@@ -33,15 +33,15 @@ const CommentsList = ({ videoId }) => {
   return (
     <div>
       {comments.map((c) => (
-        <div key={c.id} className="flex shadow-sm bg-gray-100 p-2 rounded my-2">
+        <div key={c.id} className="flex shadow-sm bg-gray-100 dark:bg-gray-700 p-2 rounded my-2">
           <img
             className="w-10 h-10 rounded-full"
             alt="cmt-img"
             src={USER_ICON}
           />
           <div className="px-3">
-            <p className="font-bold text-sm text-gray-900">{c.author}</p>
-            <p className="text-gray-700 text-sm">{c.text}</p>
+            <p className="font-bold text-sm text-gray-900 dark:text-gray-100">{c.author}</p>
+            <p className="text-gray-700 dark:text-gray-100 text-sm">{c.text}</p>
           </div>
         </div>
       ))}
@@ -51,8 +51,8 @@ const CommentsList = ({ videoId }) => {
 
 const CommentsContainer = ({ videoId }) => {
   return (
-    <div className="mt-4 p-2 md:p-3 bg-white rounded-lg">
-      <h1 className="text-lg md:text-xl font-bold mb-3 text-gray-900">
+    <div className="mt-4 p-2 md:p-3 bg-white dark:bg-gray-800 rounded-lg">
+      <h1 className="text-lg md:text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">
         Comments
       </h1>
       <CommentsList videoId={videoId} />
