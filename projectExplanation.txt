@@ -1,0 +1,42 @@
+Project Overview
+- React single-page app that mimics a YouTube experience: home feed, search results, watch page, category feeds (shorts, music, gaming, news, sports, podcast), and infinite scroll.
+- Built with React + React Router for routing, Redux for shared UI state (menu/theme/search cache), Tailwind CSS for styling, YouTube Data API for content and suggestions.
+
+Architecture & Routing
+- Entry: App.js wires React Router with nested routes under a common layout (Head + Body).
+- Routes: "/" (home feed), "/results?search_query=" (search results), "/watch?v=" (video player), "/shorts", "/music", "/gaming", "/news", "/sports", "/podcast" (category feeds). Button pills and sidebar links navigate to these routes.
+- Layout: Head (search, theme toggle, menu), Body (sidebar + Outlet for current route).
+
+Data Flows & Features
+- Search: Debounced input + cached suggestions; submit navigates to /results with the query param. Suggestions fetched from Google suggest endpoint; results from YouTube search API. IDs normalized (id vs id.videoId) before building watch links.
+- Feeds: Home/trending, shorts, and category feeds fetch from YouTube APIs. Infinite scroll uses nextPageToken and appends pages; dedupes items by video id to avoid repeats; resets on query/route change.
+- Watch Page: Embeds the selected video via iframe and shows comments/live chat placeholders.
+- Theming: Light/dark theme persisted in localStorage; applied at document root for consistency across routes.
+- Navigation: Sidebar links and top pill buttons use react-router Links; active styling can be extended. Menu toggle controlled via Redux.
+
+State Management
+- Redux slices: UI (menu open/closed, theme), search cache for suggestions. Component-local state handles feed data, loading, errors, pagination tokens, and search inputs per page.
+
+Error, Loading, and Empty States
+- Each feed shows loading text during fetches, "no results" when empty, and user-friendly error messages (including API quota errors) on failures.
+- Scroll handlers guard against firing while loading or before first page is loaded.
+
+Styling & Accessibility
+- Tailwind utility classes for layout and theming. Keyboard-focusable navigation elements in sidebar and pills. Thumbnails use meaningful alt text (video title). Search input has aria-label.
+
+APIs & Environment
+- YouTube Data API: uses key from REACT_APP_GOOGLE_API_KEY. Endpoints include search (with query and pageToken), videos (most popular/category-specific), shorts (search + videoDuration=short), suggestions endpoint for typeahead.
+- Requires a valid API key in environment; API quota errors are surfaced to the user.
+
+Known Constraints / Future Work
+- API quota limits can block fetching; consider retry/backoff or alternate data source.
+- Tests are not included; add unit/integration tests (React Testing Library) and E2E (Cypress/Playwright) for search, navigation, pagination, and theming.
+- Active-route styling for pills/sidebar and additional accessibility audits can further improve UX.
+
+Quick Start
+- Add REACT_APP_GOOGLE_API_KEY to your environment.
+- Install deps, run the dev server (e.g., npm install && npm start).
+- Navigate via pills/sidebar or search; scroll feeds to load more items.
+
+GitHub About Blurb
+A YouTube-style React app with routed feeds (home, results, shorts, music, gaming, news, sports, podcast), debounced and cached search suggestions, infinite scroll with YouTube Data API pagination, normalized video ids for reliable watch links, and persisted dark mode. Built with React, React Router, Redux, and Tailwind; includes accessibility touches (keyboard-focusable nav, meaningful alt text) and clear loading/error states. Demonstrates practical frontend patterns: API integration, pagination, caching, theming, and route-aware navigation.
