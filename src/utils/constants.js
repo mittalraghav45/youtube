@@ -15,12 +15,12 @@ export const SHORTS_API =
   // https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&videoCategoryId=10&regionCode=GB&maxResults=20&key=AIzaSyAE24zAYzCoLlKMXtV472yjfiwiK-e41nI
 
   export const GAMING_API=
-  'https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&videoCategoryId=25&regionCode=GB&maxResults=20&key='+
+  'https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&videoCategoryId=20&regionCode=GB&maxResults=20&key='+
   GOOGLE_API_KEY;
 // https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&videoCategoryId=20&regionCode=GB&maxResults=20&key=AIzaSyAE24zAYzCoLlKMXtV472yjfiwiK-e41nI
 
   export const NEWS_API =
-  'https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&videoCategoryId=10&regionCode=GB&maxResults=20&key='+
+  'https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&videoCategoryId=25&regionCode=GB&maxResults=20&key='+
   GOOGLE_API_KEY;
   // https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&videoCategoryId=25&regionCode=GB&maxResults=20&key=AIzaSyAE24zAYzCoLlKMXtV472yjfiwiK-e41nI
 

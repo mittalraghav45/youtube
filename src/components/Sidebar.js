@@ -10,7 +10,7 @@ const Sidebar = () => {
   return (
     <div className="w-full md:w-56 lg:w-64 p-3 md:p-4 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 overflow-y-hidden">
       <ul className="space-y-1 text-sm md:text-base">
-        <li className="font-semibold mb-1 text-gray-900 dark:text-gray-100">Home</li>
+        <Link  to="/" className="font-semibold mb-1 text-gray-900 dark:text-gray-100">Home</Link>
         <Link
           to="/shorts"
           className="block text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-2 py-1 cursor-pointer"
@@ -31,7 +31,7 @@ const Sidebar = () => {
           { label: "Podcast", to:'/podcast' },
           { label: "Music", to: "/music" },
           { label: "Gaming" ,to:'/gaming'},
-          { label: "News",to:'/news' },
+          { label: "News & Politics",to:'/news' },
         ].map((item) =>
           item.to ? (
             <Link
