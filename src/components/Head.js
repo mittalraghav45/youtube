@@ -66,7 +66,11 @@ const Head = () => {
     if (!searchQuery.trim()) return;
     // navigate(`/results?search_query=${encodeURIComponent(searchQuery.trim())}`);
   };
-
+  const handleSearch = (val) => {
+    console.log("value :", val);
+    setSearchQuery(val);
+    setShowSuggestions(false);
+  };
   return (
     <div className="grid grid-cols-12 items-center gap-3 p-3 md:p-5 shadow sticky top-0 bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100 z-20">
       <div className="flex items-center col-span-2 md:col-span-2">
@@ -102,11 +106,12 @@ const Head = () => {
           <div className="bg-white dark:bg-gray-800 shadow-lg w-full md:w-3/4 lg:w-1/2 mx-auto mt-1 rounded-lg border border-gray-100 dark:border-gray-700 absolute left-1/2 -translate-x-1/2">
             <ul className="py-2 max-h-64 overflow-y-auto">
               {suggestions.map((s) => (
-                <li key={s}
-                  className="px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer flex items-center gap-2"
-                >
+                <li key={s}  value={s}
+                  className="px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 
+                  cursor-pointer flex items-center gap-2" >
                   <span>🔍</span>
-                  <span>{s}</span>
+                  <span value={s} className="border border-red-300"  
+                  onMouseDown={() => handleSearch(s)}>{s}</span>
                 </li>
               ))}
             </ul>
