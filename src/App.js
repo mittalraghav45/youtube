@@ -7,6 +7,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
 import WatchPage from "./components/WatchPage";
 import ShortsContainer from "./components/ShortsContainer";
+import SportsContainer from "./components/SportsContainer";
+import PodcastContainer from "./components/PodcastContainer";
+import MusicContainer from "./components/MusicContainer"; 
+import GamingContainer from "./components/GamingContainer"; 
+import NewsContainer from "./components/NewsContainer"; 
+
 
 const AppLayout = () => (
   <>
@@ -32,6 +38,27 @@ const appRouter = createBrowserRouter([
         path:'shorts',
         element:<ShortsContainer/>
       },
+      {
+        path:'sports',
+        element:<SportsContainer/>
+      },
+      {
+        path:'podcast',
+        element:<PodcastContainer/>
+      },
+      {
+        path:'music',
+        element:<MusicContainer/>
+      },
+      {
+        path:'gaming',
+        element:<GamingContainer/>
+      },
+      {
+        path:'news',
+        element:<NewsContainer/>
+      },
+      
       {
         path:'watch',
         element:<WatchPage/>

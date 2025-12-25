@@ -17,13 +17,7 @@ const Sidebar = () => {
         >
           Shorts
         </Link>
-        <li
-          tabIndex={0}
-          role="button"
-          className="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-2 py-1 cursor-pointer"
-        >
-          Subscriptions
-        </li>
+        
       </ul>
 
       <hr className="my-3 border-gray-200 dark:border-gray-700" />
@@ -32,35 +26,37 @@ const Sidebar = () => {
         Explore
       </h2>
       <ul className="space-y-1 text-sm md:text-base">
-        {["Trending", "Music", "Gaming", "News"].map((label) => (
-          <li
-            key={label}
-            tabIndex={0}
-            role="button"
-            className="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-2 py-1 cursor-pointer"
-          >
-            {label}
-          </li>
-        ))}
+        {[
+          { label: "Sports", to:'/sports' },
+          { label: "Podcast", to:'/podcast' },
+          { label: "Music", to: "/music" },
+          { label: "Gaming" ,to:'/gaming'},
+          { label: "News",to:'/news' },
+        ].map((item) =>
+          item.to ? (
+            <Link
+              key={item.label}
+              to={item.to}
+              className="block text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-2 py-1 cursor-pointer"
+            >
+              {item.label}
+            </Link>
+          ) : (
+            <li
+              key={item.label}
+              tabIndex={0}
+              role="button"
+              className="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-2 py-1 cursor-pointer"
+            >
+              {item.label}
+            </li>
+          )
+        )}
       </ul>
 
       <hr className="my-3 border-gray-200 dark:border-gray-700" />
 
-      <h2 className="font-semibold text-sm md:text-base mb-1 text-gray-900 dark:text-gray-100">
-        Library
-      </h2>
-      <ul className="space-y-1 text-sm md:text-base">
-        {["History", "Watch later", "Liked videos"].map((label) => (
-          <li
-            key={label}
-            tabIndex={0}
-            role="button"
-            className="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-2 py-1 cursor-pointer"
-          >
-            {label}
-          </li>
-        ))}
-      </ul>
+      
     </div>
   );
 };

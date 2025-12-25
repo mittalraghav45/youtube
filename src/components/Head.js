@@ -4,7 +4,7 @@ import {
   HAMBUR_LOGO,
   USER_ICON,
   YT_LOGO,
-  YOUTUBE_SUGGESTIONS_API,
+  YOUTUBE_SUGGESTIONS_API, 
 } from "../utils/constants";
 import { useEffect, useState } from "react";
 import { cacheResults } from "../utils/searchSlice";
@@ -72,7 +72,7 @@ const Head = () => {
     const paramVal = searchParams.get("search_query") || "";
     setSearchQuery((prev) => (prev !== paramVal ? paramVal : prev));
   }, [searchParams]);
-
+  
   const runSearch = (value) => {
     const trimmed = value.trim();
     if (!trimmed) return;

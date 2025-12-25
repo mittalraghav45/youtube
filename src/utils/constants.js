@@ -9,7 +9,28 @@ export const SHORTS_API =
   "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=shorts&type=video&videoDuration=short&key=" +
   GOOGLE_API_KEY;
 
-// https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=25&key=AIzaSyAE24zAYzCoLlKMXtV472yjfiwiK-e41nI&q=travel
+  export const MUSIC_API =
+  'https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&videoCategoryId=10&regionCode=GB&maxResults=20&key='+
+  GOOGLE_API_KEY;
+  // https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&videoCategoryId=10&regionCode=GB&maxResults=20&key=AIzaSyAE24zAYzCoLlKMXtV472yjfiwiK-e41nI
+
+  export const GAMING_API=
+  'https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&videoCategoryId=25&regionCode=GB&maxResults=20&key='+
+  GOOGLE_API_KEY;
+// https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&videoCategoryId=20&regionCode=GB&maxResults=20&key=AIzaSyAE24zAYzCoLlKMXtV472yjfiwiK-e41nI
+
+  export const NEWS_API =
+  'https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&videoCategoryId=10&regionCode=GB&maxResults=20&key='+
+  GOOGLE_API_KEY;
+  // https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&videoCategoryId=25&regionCode=GB&maxResults=20&key=AIzaSyAE24zAYzCoLlKMXtV472yjfiwiK-e41nI
+
+  export const SPORTS_API =
+  'https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=sports&order=viewCount&regionCode=GB&maxResults=20&key='+GOOGLE_API_KEY;
+  
+  export const PODCAST_API =
+   'https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=podcast&order=viewCount&regionCode=GB&maxResults=20&key='+GOOGLE_API_KEY;
+
+  // https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&videoCategoryId=25&regionCode=GB&maxResults=20&key=AIzaSyAE24zAYzCoLlKMXtV472yjfiwiK-e41nI
 
 export const COMMENTS_API =
   "https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&maxResults=10&key=" +
