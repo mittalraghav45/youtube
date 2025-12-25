@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NEWS_API } from "../utils/constants";
 import VideoCards from "./VideoCards";
 import { Link } from "react-router-dom";
+import ButtonList from "./ButtonList";
 
 const NewsContainer = () => {
   const [news, setNews] = useState([]);
@@ -79,6 +80,9 @@ const NewsContainer = () => {
   };
 
   return (
+    <> 
+    <ButtonList/>
+   
     <div className="h-screen overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-gray-100" onScroll={handleScroll}>
       <div className="grid gap-4 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {news.map((video, index) => {
@@ -108,6 +112,7 @@ const NewsContainer = () => {
         </p>
       )}
     </div>
+     </>
   );
 };
 

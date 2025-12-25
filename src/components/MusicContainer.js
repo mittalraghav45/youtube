@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MUSIC_API } from "../utils/constants";
 import VideoCards from "./VideoCards";
 import { Link } from "react-router-dom";
+import ButtonList from "./ButtonList";
 
 const MusicContainer = () => {
   const [music, setMusic] = useState([]);
@@ -14,42 +15,14 @@ const MusicContainer = () => {
     setLoading(true);
     setError("");
     let url = MUSIC_API;
-    if (pageToken) {
-      url += `&pageToken=${pageToken}`;
-    }
+    if (pageToken) url += `&pageToken=${pageToken}`;
+
     try {
       const res = await fetch(url);
-      if (!res.ok) {
-        let message = "Failed to load music";
-        try {
-          const errJson = await res.json();
-          message =
-            errJson?.error?.errors?.[0]?.message ||
-            errJson?.error?.message ||
-            message;
-        } catch (_) {}
-        throw new Error(message);
-      }
+      if (!res.ok) throw new Error("Failed to load music");
       const json = await res.json();
-      const nextItems = (json.items || []).filter((item) => {
-        const id = typeof item.id === "string" ? item.id : item.id?.videoId;
-        return Boolean(id);
-      });
-      setMusic((prev) => {
-        const seen = new Set(
-          prev
-            .map((v) =>
-              typeof v.id === "string" ? v.id : v.id?.videoId
-            )
-            .filter(Boolean)
-        );
-        const fresh = nextItems.filter((item) => {
-          const id =
-            typeof item.id === "string" ? item.id : item.id?.videoId;
-          return id && !seen.has(id);
-        });
-        return [...prev, ...fresh];
-      });
+      const items = json.items || [];
+      setMusic((prev) => [...prev, ...items]);
       setNextPageToken(json.nextPageToken || null);
     } catch (err) {
       setError(err.message || "Something went wrong");
@@ -57,33 +30,33 @@ const MusicContainer = () => {
       setLoading(false);
     }
   };
+
   useEffect(() => {
-    setMusic([]);
-    setNextPageToken(null);
     fetchMusic();
   }, []);
 
   const handleScroll = (e) => {
-    if (loading || music.length === 0) return;
+    if (loading || !nextPageToken) return;
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
-    if (
-      scrollHeight - scrollTop - clientHeight < 200 &&
-      nextPageToken &&
-      !loading
-    ) {
+    if (scrollHeight - scrollTop - clientHeight < 200) {
       fetchMusic(nextPageToken);
     }
   };
 
   return (
-    <div className="h-screen overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-gray-100" onScroll={handleScroll}>
+    <>
+    <ButtonList/>
+    <div
+      className="h-screen overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-gray-100"
+      onScroll={handleScroll}
+    >
       <div className="grid gap-4 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {music.map((video, index) => {
           const videoId =
             typeof video.id === "string" ? video.id : video.id?.videoId;
           if (!videoId) return null;
           return (
-            <Link key={index + videoId} to={"/watch?v=" + videoId}>
+            <Link key={index + videoId} to={`/watch?v=${videoId}`}>
               <VideoCards info={video} />
             </Link>
           );
@@ -99,13 +72,13 @@ const MusicContainer = () => {
           {error}
         </p>
       )}
-
       {loading && (
         <p className="text-center text-sm text-gray-500 dark:text-gray-300 py-4">
           Loading music...
         </p>
       )}
     </div>
+    </>
   );
 };
 

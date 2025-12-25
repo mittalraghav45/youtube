@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { SHORTS_API } from "../utils/constants";
 import VideoCards from "./VideoCards";
 import { Link } from "react-router-dom";
+import ButtonList from "./ButtonList";
 
 const ShortsContainer = () => {
   const [videos, setVideos] = useState([]);
@@ -69,6 +70,9 @@ const ShortsContainer = () => {
   };
 
   return (
+    <>
+    <ButtonList/>
+    
     <div
       className="h-screen overflow-y-auto bg-gray-50 dark:bg-gray-900 dark:text-gray-100"
       onScroll={handleScroll}
@@ -100,7 +104,7 @@ const ShortsContainer = () => {
           Loading shorts...
         </p>
       )}
-    </div>
+    </div></>
   );
 };
 
