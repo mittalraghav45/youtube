@@ -68,19 +68,25 @@ const Head = () => {
    const getSearchFromSuggestionsDropdown = async (val) => {
     console.log('inside getSearchFromSuggestionsDropdown')
     const data = await fetch(SEARCH_API + searchQuery);
-    const json = await data.json();
-    console.log(json);    
+    const json = await data.json(); 
     navigate(`/results?search_query=${encodeURIComponent(val)}`);
 
    }
 
-  const handleSearch = (val) => {
-    console.log("value :", val);
+  const handleSearch = (val) => { 
     setSearchQuery(val);
     setShowSuggestions(false);
     getSearchFromSuggestionsDropdown(val);
   };
+  //search from the search bar
 
+   const getSearchFromSearchBar = async (searchBarVal) => {
+    console.log('inside :',searchBarVal);
+    const data = await fetch(SEARCH_API + searchBarVal);
+    const json = await data.json(); 
+    navigate(`/results?search_query=${encodeURIComponent(searchBarVal)}`);
+
+   }
 
 
   return (
@@ -109,7 +115,10 @@ const Head = () => {
             className="border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-50 px-3 py-1.5 md:px-4 md:py-2 rounded-l-full w-full md:w-3/4 lg:w-1/2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500 dark:placeholder-gray-300"
             placeholder="Search"
           />
-          <button className="border border-gray-300 dark:border-gray-600 px-4 md:px-5 py-1.5 md:py-2 rounded-r-full bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600">
+          <button 
+          type='button'
+          className="border border-gray-300 dark:border-gray-600 px-4 md:px-5 py-1.5 md:py-2 rounded-r-full bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
+          onClick={e=>getSearchFromSearchBar(searchQuery)}>
             Search
           </button>
         </form>
@@ -119,7 +128,7 @@ const Head = () => {
             <ul className="py-2 max-h-64 overflow-y-auto">
               {suggestions.map((s) => (
                 <li key={s}  value={s}
-                  className="px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 
+                  className="px-2 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 
                   cursor-pointer flex items-center gap-2" >
                   <span>🔍</span>
                   <span value={s} className="border border-red-300"  
