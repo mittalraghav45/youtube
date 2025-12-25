@@ -9,10 +9,11 @@ import {
 } from "../utils/constants";
 import { useEffect, useState } from "react";
 import { cacheResults } from "../utils/searchSlice";
-
+import { useNavigate } from "react-router-dom";
+ 
 const Head = () => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -68,14 +69,15 @@ const Head = () => {
     console.log('inside getSearchFromSuggestionsDropdown')
     const data = await fetch(SEARCH_API + searchQuery);
     const json = await data.json();
-    console.log(json);
-  
+    console.log(json);    
+    navigate(`/results?search_query=${encodeURIComponent(val)}`);
+
    }
+
   const handleSearch = (val) => {
     console.log("value :", val);
     setSearchQuery(val);
     setShowSuggestions(false);
-    
     getSearchFromSuggestionsDropdown(val);
   };
 

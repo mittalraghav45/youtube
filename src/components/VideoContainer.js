@@ -16,17 +16,17 @@ const VideoContainer = () => {
 
     //search page /results
     let url = "";
-    // if (query) {
-    //   url = SEARCH_API + encodeURIComponent(query);
-    //   if (pageToken) {
-    //     url += `&pageToken=${pageToken}`;
-    //   }
-    // } else {
+    if (query) {
+      url = SEARCH_API + encodeURIComponent(query);
+      if (pageToken) {
+        url += `&pageToken=${pageToken}`;
+      }
+    } else {
       url = YOUTUBE_VIDEOS_API;
       if (pageToken) {
         url += `&pageToken=${pageToken}`;
       }
-    // }
+    }
     const data = await fetch(url);
     const json = await data.json();
     setVideos((prev) => [...prev, ...(json.items || [])]);
@@ -35,9 +35,16 @@ const VideoContainer = () => {
   };
 
   //inintial load
+  // useEffect(() => {
+  //   getVideos();
+  // }, []);
+
   useEffect(() => {
-    getVideos();
-  }, []);
+  setVideos([]); // Clear previous videos
+  getVideos();   // Load new search/home videos
+}, [query]); // Re-run when search query changes
+
+
   const handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
 
