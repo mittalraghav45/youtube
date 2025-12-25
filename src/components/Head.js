@@ -5,6 +5,7 @@ import {
   USER_ICON,
   YT_LOGO,
   YOUTUBE_SUGGESTIONS_API,
+  SEARCH_API
 } from "../utils/constants";
 import { useEffect, useState } from "react";
 import { cacheResults } from "../utils/searchSlice";
@@ -61,16 +62,25 @@ const Head = () => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    if (!searchQuery.trim()) return;
-    // navigate(`/results?search_query=${encodeURIComponent(searchQuery.trim())}`);
-  };
+  // search from the dropdown , triggeirng SEARCH API
+  
+   const getSearchFromSuggestionsDropdown = async (val) => {
+    console.log('inside getSearchFromSuggestionsDropdown')
+    const data = await fetch(SEARCH_API + searchQuery);
+    const json = await data.json();
+    console.log(json);
+  
+   }
   const handleSearch = (val) => {
     console.log("value :", val);
     setSearchQuery(val);
     setShowSuggestions(false);
+    
+    getSearchFromSuggestionsDropdown(val);
   };
+
+
+
   return (
     <div className="grid grid-cols-12 items-center gap-3 p-3 md:p-5 shadow sticky top-0 bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100 z-20">
       <div className="flex items-center col-span-2 md:col-span-2">
@@ -87,7 +97,7 @@ const Head = () => {
 
       {/* Center: search */}
       <div className="col-span-8 md:col-span-9 px-1 md:px-6 relative">
-        <form onSubmit={handleSearchSubmit} className="flex justify-center">
+        <form className="flex justify-center">
           <input
             type="text"
             value={searchQuery}
