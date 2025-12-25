@@ -6,6 +6,7 @@ import store from "./utils/store";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
 import WatchPage from "./components/WatchPage";
+import ShortsContainer from "./components/ShortsContainer";
 
 const AppLayout = () => (
   <>
@@ -29,7 +30,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path:'shorts',
-        element:<MainContainer/>
+        element:<ShortsContainer/>
       },
       {
         path:'watch',
