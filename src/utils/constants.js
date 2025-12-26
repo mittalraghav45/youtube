@@ -25,7 +25,7 @@ export const SHORTS_API =
   // https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&videoCategoryId=25&regionCode=GB&maxResults=10&key=AIzaSyAE24zAYzCoLlKMXtV472yjfiwiK-e41nI
 
   export const SPORTS_API =
-  'https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&order=viewCount&regionCode=GB&maxResults=10&key='+GOOGLE_API_KEY+'&q=';
+  'https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&order=viewCount&regionCode=GB&maxResults=10&key='+GOOGLE_API_KEY+'&q=sports';
   
   export const PODCAST_API =
    'https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=podcast&order=viewCount&regionCode=GB&maxResults=10&key='+GOOGLE_API_KEY;
@@ -55,6 +55,9 @@ export const HAMBUR_LOGO =
 
 export const YT_LOGO =
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7PmCA18-IPKweXk2Jl7_fs0qdy5A-FhIaQg&s"; 
+
+export const YT_LOGO_DARK =
+  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 32" fill="none"><rect x="2" y="4" width="36" height="24" rx="6" fill="%23ff0000"/><polygon points="17,10 17,22 27,16" fill="white"/><text x="46" y="22" fill="white" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="14">YouTube</text></svg>';
 
 export const USER_ICON =
   "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png";

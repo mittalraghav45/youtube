@@ -4,6 +4,7 @@ import {
   HAMBUR_LOGO,
   USER_ICON,
   YT_LOGO,
+  YT_LOGO_DARK,
   YOUTUBE_SUGGESTIONS_API, 
 } from "../utils/constants";
 import { useEffect, useState } from "react";
@@ -21,6 +22,8 @@ const Head = () => {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") || "light";
   }); // persisted
+  const isDark = theme === "dark";
+  const logoSrc = isDark ? YT_LOGO_DARK : YT_LOGO;
   const searchCache = useSelector((store) => store.search);
 
   useEffect(() => {
@@ -91,8 +94,8 @@ const Head = () => {
   };
 
   return (
-    <div className="grid grid-cols-12 items-center gap-3 p-3 md:p-5 shadow sticky top-0 bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100 z-20">
-      <div className="flex items-center col-span-2 md:col-span-2">
+    <div className="grid grid-cols-12 gap-3 p-3 md:p-5 shadow sticky top-0 bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100 z-20">
+      <div className="flex items-center col-span-6 sm:col-span-4 md:col-span-2 order-1">
         <img
           className="h-6 md:h-8 cursor-pointer"
           src={HAMBUR_LOGO}
@@ -100,12 +103,16 @@ const Head = () => {
           onClick={toggleMenuHandler}
         />
         <a href="/" className="ml-2">
-          <img className="h-8 md:h-10 lg:h-12" src={YT_LOGO} alt="yt-logo" />
+          <img
+            className="h-8 md:h-10 lg:h-12 transition-[filter] duration-200"
+            src={logoSrc}
+            alt="yt-logo"
+          />
         </a>
       </div>
 
       {/* Center: search */}
-      <div className="col-span-8 md:col-span-9 px-1 md:px-6 relative">
+      <div className="col-span-12 md:col-span-9 px-1 md:px-6 relative order-3 md:order-2">
         <form className="flex justify-center" onSubmit={handleSubmit}>
           <input
             type="text"
@@ -118,7 +125,7 @@ const Head = () => {
             onFocus={() => searchQuery.trim() && setShowSuggestions(true)}
             onBlur={() => setShowSuggestions(false)}
             aria-label="Search"
-            className="border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-50 px-3 py-1.5 md:px-4 md:py-2 rounded-l-full w-full md:w-3/4 lg:w-1/2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500 dark:placeholder-gray-300"
+            className="border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-50 px-3 py-2 md:px-4 md:py-2 rounded-l-full w-full text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500 dark:placeholder-gray-300"
             placeholder="Search"
           />
           <button
@@ -151,20 +158,27 @@ const Head = () => {
       </div>
 
       {/* Right: user icon + dark mode */}
-      <div className="col-span-2 md:col-span-1 flex justify-end items-center gap-3">
-        <button
-          type="button"
-          onClick={toggleTheme}
-          className={`flex items-center w-12 h-6 rounded-full p-1 transition-colors ${
-            theme === "dark" ? "bg-yellow-400" : "bg-gray-400"
-          }`}
-        >
-          <span
-            className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${
-              theme === "dark" ? "translate-x-6" : "translate-x-0"
+      <div className="col-span-6 sm:col-span-8 md:col-span-1 flex justify-end items-center gap-3 order-2 md:order-3">
+        <div className="flex items-center gap-2">
+          <span className="text-xs md:text-sm font-medium">
+            {isDark ? "Dark" : "Light"}
+          </span>
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-pressed={isDark}
+            aria-label="Toggle dark mode"
+            className={`relative flex items-center w-14 h-7 rounded-full px-1.5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
+              isDark ? "bg-yellow-400/90" : "bg-gray-400/80"
             }`}
-          />
-        </button>
+          >
+            <span
+              className={`absolute left-1 w-5 h-5 bg-white rounded-full shadow-md transform transition-transform ${
+                isDark ? "translate-x-6" : "translate-x-0"
+              }`}
+            />
+          </button>
+        </div>
         <img className="h-8 w-8 rounded-full" src={USER_ICON} alt="user-icon" />
       </div>
     </div>
